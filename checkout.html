@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/png">
+    <title>Shades Posters</title>
+</head>
+
+<body>
+    <div class="topBar">
+        <div>
+            <img src="./images/logo.png" alt="Shades Posters Logo">
+            <h1>Shades Posters</h1>
+        </div>
+
+        <div>
+            <a href="./">Home</a>
+            <a href="https://www.instagram.com/shadeposters/"> Contact </a>
+        </div>
+    </div>
+
+    <div class="title">
+        <h1>Checkout Now</h1>
+        <p>Ready to complete your order? Get everything you need in just a few simple steps.</p>
+    </div>
+
+    <div class="sectiontitle">
+        Your Contact Information
+        <hr>
+    </div>
+
+    <div>
+        <div class="card details">
+            <h1>Mode of Enquiry</h1>
+            <input id="modeOfEnquiry" type="text" placeholder="Enter your Instagram ID or Email ID">
+        </div>
+
+        <div class="card details">
+            <h1>Your Name</h1>
+            <input id="name" type="text" placeholder="Enter your Full Name">
+        </div>
+
+        <div class="card details">
+            <h1>Mode of Delivery</h1>
+            <input id="modeOfDelivery" type="text" placeholder="If its St. Patricks then class else please specify">
+        </div>
+
+        <div class="card details">
+            <h1>Miscellaneous Requests</h1>
+            <textarea id="requests" type="text" placeholder="Your Answer"></textarea>
+        </div>
+    </div>
+
+    <div class="sectiontitle">
+        Your Cart
+        <hr>
+    </div>
+
+    <div class="card bill">
+        <h2>Bill</h2>
+        <i>Bill Number: <span>10</span></i> <br />
+        <i>Date:        <span>19th December 2024</span></i> <br>
+
+        <p>Items Purchased</p>
+        <ul>
+            <li>1 - A5 : 25/-</li>
+            <li>1 - A4 : 50/-</li>
+        </ul>
+
+        <br>
+
+        Total Cost: 75/-
+    </div>
+
+    <div class="orderwrapper">
+        <button data-type="order" class="ordernow">
+            Order Now
+        </button>
+    </div>
+    </div>
+
+    <script type="module" src="./js/checkout.js" defer></script>
+</body>
+
+</html>
