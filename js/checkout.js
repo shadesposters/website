@@ -1,6 +1,10 @@
 setTimeout(() => {
-  document.body.innerHTML = document.body.innerHTML + (` <div id="devSnackbar" style="font-family: monospace;position: sticky;bottom: 10px;left: calc(100vw - 150px);border: #000000 1px solid;text-align: center;padding: 10px;margin: 10px;border-radius: 10px;font-size: 1em;background-color: #FFF4E6;width: 150px;">Made by <a href="https://github.com/theatom06/" style="color: rgb(245, 86, 86);">theatom06</a></div>`)
+  document.body.innerHTML = document.body.innerHTML + (` <div id="devSnackbar" style="font-family: monospace;position: sticky;bottom: 10px;left: 10px;border: #000000 1px solid;text-align: center;padding: 10px;margin: 10px;border-radius: 10px;font-size: 1em;background-color: #FFF4E6;width: 150px;">Made by <a href="https://github.com/theatom06/" style="color: rgb(245, 86, 86);">theatom06</a></div>`)
 }, 1000);
+
+if(parseInt(localStorage.getItem('warning')) > 6) {
+  document.body.innerHTML = 'You Have Been Banned';
+}
 
 import {
   initializeApp
@@ -135,16 +139,31 @@ document.addEventListener('click', (event) => {
   };
 
   const ordersCollection = collection(db, 'orders');
-  addDoc(ordersCollection, order)
-    .then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-      alert('Order placed successfully');
-      localStorage.setItem('cart', JSON.stringify([]));
-      window.location.href = '/';
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
+
+  
+
+  if (order.name && order.modeOfEnquiry && order.modeOfDelivery && order.posters.length > 0) {
+    addDoc(ordersCollection, order)
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+        alert('Order placed successfully');
+        localStorage.setItem('cart', JSON.stringify([]));
+        window.location.href = '/';
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+      });
+  } else {
+    if(localStorage.getItem('warning')) {
+      const currentWarning = parseInt(localStorage.getItem('warning'));
+      alert('Warning: Please fill all the details\nThis is warning number ' + (currentWarning + 1) + ',\n' + (6 - currentWarning) + ' more and your banned');
+      localStorage.setItem('warning', currentWarning + 1);
+      return;
+    }
+
+    alert('Please fill all the details\nThis is first warning,\n5 more and your banned');
+    localStorage.setItem('warning', 1)
+  }
     }
   } 
 });
