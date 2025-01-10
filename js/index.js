@@ -1,30 +1,5 @@
-setTimeout(() => {
-    const devSnackbar = document.createElement('div');
-    devSnackbar.id = 'devSnackbar';
-    devSnackbar.style = `
-        font-family: monospace;
-        position: sticky;
-        bottom: 10px;
-        left: 10px;
-        border: #000000 1px solid;
-        text-align: center;
-        padding: 10px;
-        margin: 10px;
-        border-radius: 10px;
-        font-size: 1em;
-        background-color: #FFF4E6;
-        width: 150px;
-    `;
-    devSnackbar.innerHTML = 'Made by <a href="https://github.com/theatom06/" style="color: rgb(245, 86, 86);">theatom06</a>';
-    document.body.appendChild(devSnackbar);
-}, 1000);
+import { posterList, cart } from "./root.js";
 
-if(parseInt(localStorage.getItem('warning')) > 6) {
-    document.body.innerHTML = 'You Have Been Banned';
-}
-
-// Fetch poster list from URL
-const posterListUrl = 'https://shadesposters.github.io/posters/details.json';
 
 // Create a card element for a poster object
 function createCard(object, slug) {
@@ -46,20 +21,15 @@ function createCard(object, slug) {
     return wrapper;
 }
 
-// Fetch poster data and populate the gallery
-fetch(posterListUrl)
-    .then(response => response.json())
-    .then(data => {
-        const filterBar = document.querySelector('div.filterbar');
-        const keywords = data.keywords;
 
-        keywords.forEach(keyword => {
-            const button = document.createElement('button');
-            button.innerText = keyword;
-            button.classList.add('chip');
-            button.onclick = () => {
-                const gallery = document.querySelector('div.gallery');
-                gallery.innerHTML = '';
+
+/* keywords.forEach(keyword => {
+    const button = document.createElement('button');
+    button.innerText = keyword;
+    button.classList.add('chip');
+    button.onclick = () => {
+    const gallery = document.querySelector('div.gallery');
+            gallery.innerHTML = '';
                 Object.entries(data.posters).forEach(([slug, poster]) => {
                     if (poster.keywords.includes(keyword)) {
                         const card = createCard(poster, slug);
@@ -68,17 +38,14 @@ fetch(posterListUrl)
                 });
             };
             filterBar.appendChild(button);
-        });
+        }); */
 
-        const gallery = document.querySelector('div.gallery');
-        Object.entries(data.posters).forEach(([slug, poster]) => {
-            const card = createCard(poster, slug);
-            gallery.appendChild(card);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching poster list:', error);
-    });
+const gallery = document.querySelector('div.gallery');
+        
+Object.entries(posterList).forEach(([slug, poster]) => {
+    const card = createCard(poster, slug);
+    gallery.appendChild(card);
+});
 
 // Handle click events on the document
 document.addEventListener('click', event => {

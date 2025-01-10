@@ -1,5 +1,7 @@
 import { posterList, cart } from './root.js';
 
+let cartSet = new Set();
+
 function createCard(object, slug) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('card');
@@ -36,7 +38,24 @@ function createCard(object, slug) {
     return wrapper;
 }
 
+if(cart.cart.length === 0) {
+    document.querySelector('.gallery').innerHTML = '<h1 style="text-align: center;">Your Cart is Empty <br><br> <a href="/" class="returnLink">Go Back</a></h1>';
+}
+
 cart.cart.forEach(slug => {
+    if(!posterList[slug]) {
+        return;
+    }
+
+    console.log(slug, posterList[slug], cartSet);
+    if(cartSet.has(slug)) {
+        document.querySelector(`input[data-slug="${slug}"]`).value = parseInt(document.querySelector(`input[data-slug="${slug}"]`).value) + 1;
+        return;
+    }
+
+    cartSet.add(slug);
+
+
     const card = createCard(posterList[slug], slug);
     card.classList.add('selected');
     document.querySelector('.gallery').appendChild(card);

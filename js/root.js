@@ -1,6 +1,6 @@
 setTimeout(() => {
     const devSnackbar = document.createElement('div');
-    devSnackbaakar.id = 'devSnackbar';
+    devSnackbar.id = 'devSnackbar';
     devSnackbar.style = `
         font-family: monospace;
         position: sticky;
@@ -18,10 +18,6 @@ setTimeout(() => {
     devSnackbar.innerHTML = 'Made by <a href="https://github.com/theatom06/" style="color: rgb(245, 86, 86);">theatom06</a>';
     document.body.appendChild(devSnackbar);
 }, 1000);
-
-if (parseInt(localStorage.getItem('warning')) > 6) {
-    document.body.innerHTML = 'You Have Been Banned';
-}
 
 const posterListUrl = 'https://shadesposters.github.io/posters/details.json';
 const posterList = {}
