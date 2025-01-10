@@ -47,7 +47,6 @@ cart.cart.forEach(slug => {
         return;
     }
 
-    console.log(slug, posterList[slug], cartSet);
     if(cartSet.has(slug)) {
         document.querySelector(`input[data-slug="${slug}"]`).value = parseInt(document.querySelector(`input[data-slug="${slug}"]`).value) + 1;
         return;

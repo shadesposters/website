@@ -60,7 +60,36 @@ class Cart {
 
 const cart = new Cart();
 
-export { 
-    posterList,
-    cart
-};
+
+
+document.addEventListener('click', event => {
+    if (event.target.tagName === 'A') {
+        console.log('Link clicked');
+        const url = event.target.href;
+
+        if (url.includes('instagram') || url.includes('facebook') || url.includes('twitter')) {
+            console.log('External link clicked');
+            return;
+        } else {
+            event.preventDefault();
+            const page = url.split('/').pop();
+            const currentUrl = new URL(window.location.href);
+            const newUrl = currentUrl.origin + '/' + page;
+            let pageHtml;
+
+            fetch(newUrl)
+                .then(response => response.text())
+                .then(html => {
+                    pageHtml = html;
+                    document.body.innerHTML = pageHtml;
+                    location.href = newUrl;
+                    console.log('Page loaded successfully');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    };
+});
+
+export { cart, posterList };

@@ -164,10 +164,9 @@ div.gallery {
 
 }
 
-
 @media screen and (max-width: 600px) {
     .gallery {
-        width: 90vw !important;
+        width: 80vw !important;
         margin: 0;
         padding: 0;
 
